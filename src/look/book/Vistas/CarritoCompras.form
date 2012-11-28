@@ -149,8 +149,12 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="terrestre">
           <Properties>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Terrestre"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="terrestreActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="aereo">
           <Properties>

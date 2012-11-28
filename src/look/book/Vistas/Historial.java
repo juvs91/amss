@@ -126,6 +126,9 @@ public class Historial extends javax.swing.JPanel {
 
     public void mostrarCompra(ListSelectionEvent lse) {
         int x = listaFactura.getSelectedIndex();
+
+        if(x >= c.size() || x < 0)
+            return;
         Compra com = c.get(x);
         if (com.getMetodo_envio() == 1) {
             envio = "Aereo";

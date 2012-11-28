@@ -27,6 +27,9 @@ public class CarritoCompras extends javax.swing.JPanel {
 
     private CarroDeComprasControlador controlador;
     private ProcesarOrdenControlador procesarControlador;
+    private float precioT = 0;
+    private float pesoT = 0;
+    private int metodo_envio = 0;
 
     public CarritoCompras() {
         initComponents();
@@ -44,8 +47,6 @@ public class CarritoCompras extends javax.swing.JPanel {
 
         contenido.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-        float precioT = 0;
-        float pesoT = 0;
         BoxLayout layout = new BoxLayout(panel2, BoxLayout.PAGE_AXIS);
         panel2.setLayout(layout);
         for (int i = 0; i < libros.size(); i++) {
@@ -55,8 +56,9 @@ public class CarritoCompras extends javax.swing.JPanel {
             panel2.add(panel);
         }
 
-        costoTotal.setText(String.format("$%.2f", precioT));
-        pesoTotal.setText(String.format("%.02f kg", pesoT));
+        costoEnvio.setText(String.format("$%.02f", pesoT * 2));
+        costoTotal.setText(String.format("$%.2f", precioT + pesoT * 2));
+        pesoTotal.setText(String.format("%.2f", pesoT));
     }
 
     /**
@@ -95,7 +97,13 @@ public class CarritoCompras extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Metodo de envio: ");
 
+        terrestre.setSelected(true);
         terrestre.setText("Terrestre");
+        terrestre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                terrestreActionPerformed(evt);
+            }
+        });
 
         aereo.setText("Aereo");
         aereo.addActionListener(new java.awt.event.ActionListener() {
@@ -225,17 +233,26 @@ public class CarritoCompras extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aereoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aereoActionPerformed
+        costoEnvio.setText(String.format("$%.02f", pesoT * 4));
+        costoTotal.setText(String.format("$%.2f", precioT + pesoT * 4));
+        metodo_envio = 1;
     }//GEN-LAST:event_aereoActionPerformed
 
     private void procesarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesarOrdenActionPerformed
         int ax = JOptionPane.showConfirmDialog(null, "¿Estas seguro de querer procesar la orden?");
         if (ax == JOptionPane.YES_OPTION) {
-            procesarControlador.procesarOrden();
+            procesarControlador.procesarOrden(metodo_envio);
             JOptionPane.showMessageDialog(Controlador.ventana, "La orden ha sido procesada.", "Orden procesada", JOptionPane.DEFAULT_OPTION);
             Controlador.ventana.cambiarVista(new CarritoCompras());
         }
 
     }//GEN-LAST:event_procesarOrdenActionPerformed
+
+    private void terrestreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terrestreActionPerformed
+        costoEnvio.setText(String.format("$%.02f", pesoT * 2));
+        costoTotal.setText(String.format("$%.2f", precioT + pesoT * 2));
+        metodo_envio = 0;
+    }//GEN-LAST:event_terrestreActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton aereo;
     private javax.swing.JScrollPane contenido;
