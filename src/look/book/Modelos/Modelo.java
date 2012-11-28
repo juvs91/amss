@@ -88,7 +88,7 @@ public class Modelo<T> {
     public static <T extends Modelo> T buscar(Class<T> c, int id) {
         String[] condiciones = {"id = " + id};
         List<T> lista = buscarTodos(c, condiciones);
-        if (lista != null) {
+        if (lista.size() > 0) {
             return lista.get(0);
         }
 

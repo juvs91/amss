@@ -6,6 +6,7 @@ package look.book.Controladores;
 
 import java.util.LinkedList;
 import look.book.Modelos.Compra;
+import look.book.Modelos.CompraLibro;
 
 /**
  *
@@ -19,6 +20,6 @@ public class HistorialControlador extends Controlador{
    public LinkedList<Compra> getHistorial(){
        return usuario.getCompras();
    
-   } 
-    
+   }
+ 
 }

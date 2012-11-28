@@ -4,6 +4,15 @@
  */
 package look.book.Vistas;
 
+import java.util.LinkedList;
+import javax.swing.DefaultListModel;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import look.book.Controladores.HistorialControlador;
+import look.book.Modelos.Compra;
+import look.book.Modelos.CompraLibro;
+
 /**
  *
  * @author Ricardo
@@ -13,8 +22,31 @@ public class Historial extends javax.swing.JPanel {
     /**
      * Creates new form Historial
      */
+    private LinkedList<Compra> c;
+    private DefaultListModel modelo;
+    private HistorialControlador historial;
+    private Compra comp;
+    private String text;
+    private LinkedList<CompraLibro> cl;
+    private int i;
+
     public Historial() {
+        modelo = new DefaultListModel();
         initComponents();
+        c = null;
+        historial = new HistorialControlador();
+        comp = new Compra();
+        cl = null;
+        mostrarLista();
+        listaFactura.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent lse) {
+                if (lse.getValueIsAdjusting()) {
+                    mostrarCompra(lse);
+                }
+            }
+        });
     }
 
     /**
@@ -38,6 +70,7 @@ public class Historial extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Historial");
 
+        listaFactura.setModel(modelo);
         jScrollPane1.setViewportView(listaFactura);
 
         textArea.setColumns(20);
@@ -53,7 +86,7 @@ public class Historial extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 97, Short.MAX_VALUE))
+                        .addGap(0, 105, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -66,7 +99,7 @@ public class Historial extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
@@ -78,4 +111,23 @@ public class Historial extends javax.swing.JPanel {
     private javax.swing.JList listaFactura;
     private javax.swing.JTextArea textArea;
     // End of variables declaration//GEN-END:variables
+
+    private void mostrarLista() {
+        c = historial.getHistorial();
+        for (Compra compl : c) {
+            modelo.addElement(compl.getId());
+        }
+
+    }
+
+    public void mostrarCompra(ListSelectionEvent lse) {
+        Compra com = c.get(lse.getFirstIndex());
+        text="";
+        text = text+"el costo total es: " + com.getCosto_total() +"\n"+"el id es: " + com.getId() +"\n"+ "titulo: " + com.getComprasLibro().size();
+        for (CompraLibro compLi : com.getComprasLibro()) {
+            text += "\n"+"la cantidad: " + compLi.getCantidad() +"\n"+ "titulo:" + compLi.getLibro().getTitulo();
+        }
+        textArea.setText(text);;
+    }
 }
+

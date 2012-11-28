@@ -1,12 +1,13 @@
 package look.book.Modelos;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 
 public class Compra extends Modelo {
 
     private int id;
-    private Date fecha;
+    private Timestamp fecha;
     private int metodo_envio;
     private float costo_total;
     private float peso_total;
@@ -49,11 +50,11 @@ public class Compra extends Modelo {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 
