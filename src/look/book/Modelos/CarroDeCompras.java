@@ -13,7 +13,27 @@ public class CarroDeCompras extends Modelo {
         cantidadPorLibro = new LinkedList<Integer>();
     }
 
+    public void eliminarLibro(Libro libro, int cantidad) {
+        for (int i = 0; i < libros.size(); i++) {
+            if (libros.get(i).getId() == libro.getId()) {
+                cantidadPorLibro.set(i, cantidadPorLibro.get(i) - cantidad);
+                if (cantidadPorLibro.get(i) <= 0) {
+                    cantidadPorLibro.remove(i);
+                    libros.remove(i);
+                }
+                return;
+            }
+        }
+    }
+
     public void agregarLibro(Libro libro, int cantidad) {
+        for (int i = 0; i < libros.size(); i++) {
+            if (libros.get(i).getId() == libro.getId()) {
+                cantidadPorLibro.set(i, cantidadPorLibro.get(i) + cantidad);
+                return;
+            }
+        }
+
         libros.add(libro);
         cantidadPorLibro.add((Integer) cantidad);
     }

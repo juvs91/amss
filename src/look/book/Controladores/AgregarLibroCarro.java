@@ -9,7 +9,6 @@ public class AgregarLibroCarro extends Controlador {
     }
 
     public boolean agregarLibro(int id, int cantidad) {
-
         Libro libro = Modelo.buscar(Libro.class, id);
         if (cantidad == 0 || cantidad > libro.getCantDisponible()) {
             return false;
