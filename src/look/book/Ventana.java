@@ -32,6 +32,8 @@ public class Ventana extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 800));
         setMinimumSize(new java.awt.Dimension(800, 800));
+        setPreferredSize(new java.awt.Dimension(800, 800));
+        setResizable(false);
 
         botonListado.setText("Ver Listado de Libros");
         botonListado.addActionListener(new java.awt.event.ActionListener() {
@@ -66,7 +68,7 @@ public class Ventana extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(204, Short.MAX_VALUE)
+                .addContainerGap(308, Short.MAX_VALUE)
                 .addComponent(botonListado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonCarrito)
@@ -83,7 +85,7 @@ public class Ventana extends javax.swing.JFrame {
                     .addComponent(botonCarrito)
                     .addComponent(botonHistorial)
                     .addComponent(botonCerrarSesion))
-                .addContainerGap(618, Short.MAX_VALUE))
+                .addContainerGap(777, Short.MAX_VALUE))
         );
 
         pack();

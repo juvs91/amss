@@ -16,7 +16,7 @@ public class IniciarSesionControlador extends Controlador {
 
         LinkedList<Usuario> usuarios = Modelo.buscarTodos(Usuario.class, condiciones);
 
-        if (usuarios != null) {
+        if (usuarios.size() > 0) {
             Controlador.usuario = usuarios.get(0);
             
             Controlador.ventana.menuVisible();
