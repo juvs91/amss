@@ -3,6 +3,7 @@ package look.book;
 import look.book.Controladores.Controlador;
 import look.book.Vistas.IniciarSesion;
 import javax.swing.*;
+import look.book.Vistas.CarritoCompras;
 import look.book.Vistas.Historial;
 import look.book.Vistas.ListadoLibros;
 
@@ -65,13 +66,13 @@ public class Ventana extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(139, Short.MAX_VALUE)
+                .addContainerGap(204, Short.MAX_VALUE)
                 .addComponent(botonListado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonCarrito)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonHistorial)
-                .addGap(83, 83, 83)
+                .addGap(18, 18, 18)
                 .addComponent(botonCerrarSesion))
         );
         layout.setVerticalGroup(
@@ -89,7 +90,7 @@ public class Ventana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCarritoActionPerformed
-        // TODO add your handling code here:
+        Controlador.ventana.cambiarVista(new CarritoCompras());
     }//GEN-LAST:event_botonCarritoActionPerformed
 
     private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
