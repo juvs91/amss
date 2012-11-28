@@ -10,6 +10,8 @@ public class Modelo<T> {
 
     private static Connection conexion;
     private static Statement stm;
+
+    
     protected String tabla;
 
     static {
