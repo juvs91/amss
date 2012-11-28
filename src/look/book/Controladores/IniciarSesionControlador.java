@@ -19,6 +19,7 @@ public class IniciarSesionControlador extends Controlador {
         if (usuarios != null) {
             Controlador.usuario = usuarios.get(0);
             
+            Controlador.ventana.menuVisible();
             ventana.cambiarVista(new ListadoLibros());
             return true;
         }
