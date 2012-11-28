@@ -28,6 +28,7 @@ public class Historial extends javax.swing.JPanel {
     private Compra comp;
     private String text;
     private LinkedList<CompraLibro> cl;
+    private String envio;
     private int i;
 
     public Historial() {
@@ -122,12 +123,18 @@ public class Historial extends javax.swing.JPanel {
 
     public void mostrarCompra(ListSelectionEvent lse) {
         Compra com = c.get(lse.getFirstIndex());
-        text="";
-        text = text+"el costo total es: " + com.getCosto_total() +"\n"+"el id es: " + com.getId() +"\n"+ "titulo: " + com.getComprasLibro().size();
-        for (CompraLibro compLi : com.getComprasLibro()) {
-            text += "\n"+"la cantidad: " + compLi.getCantidad() +"\n"+ "titulo:" + compLi.getLibro().getTitulo();
+        if(com.getMetodo_envio()==1){
+            envio="Aereo";
+        }else{
+            envio="Terrestre";
         }
-        textArea.setText(text);;
+        text="";
+        text = text+"El costo total es: " +"$"+com.getCosto_total() +"\n"+"La factura " + com.getId()+"\nEl peso total:"+"$"+com.getPeso_total()+"\nEl total de envio:"+"$"+com.getEnvio_total()+"\nEl metodo de envio:"+envio;
+        text+="\n=========================================";
+        for (CompraLibro compLi : com.getComprasLibro()) {
+            text += "\n"+"La cantidad: " + compLi.getCantidad() +"\n"+ "Titulo:" + compLi.getLibro().getTitulo()+"\n"+"El id del Libro:"+compLi.getCompraId()+"\nEl precio del libro";
+            text+="\n=========================================";
+        }
+         textArea.setText(text);
     }
 }
-
