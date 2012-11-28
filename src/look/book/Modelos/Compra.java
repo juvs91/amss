@@ -1,8 +1,5 @@
 package look.book.Modelos;
 
-import java.lang.reflect.Field;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.LinkedList;
@@ -39,8 +36,10 @@ public class Compra extends Modelo {
 
         if (metodo_envio == 0) { // terrestre
             envio_total = 2 * peso_total;
+            costo_total = costo_total + peso_total * 2;
         } else {
             envio_total = 4 * peso_total;
+            costo_total = costo_total + peso_total * 4;
         }
 
         Date d = new Date();

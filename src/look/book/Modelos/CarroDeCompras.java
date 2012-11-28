@@ -6,7 +6,6 @@ public class CarroDeCompras extends Modelo {
 
     private LinkedList<Libro> libros;
     private LinkedList<Integer> cantidadPorLibro;
-    private double pesoTotal;
 
     public CarroDeCompras() {
         libros = new LinkedList<Libro>();
@@ -59,10 +58,10 @@ public class CarroDeCompras extends Modelo {
     }
 
     public double getPesoTotal() {
-        return this.pesoTotal;
-    }
-
-    public void setPesoTotal(double pesoTotal) {
-        this.pesoTotal = pesoTotal;
+        float pesoTotal = 0;
+        for (int i = 0; i < libros.size(); i++) {
+            pesoTotal += libros.get(i).getPeso() * cantidadPorLibro.get(i);
+        }
+        return pesoTotal;
     }
 }
