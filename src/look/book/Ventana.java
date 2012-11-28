@@ -24,6 +24,7 @@ public class Ventana extends javax.swing.JFrame {
         botonListado = new javax.swing.JButton();
         botonCarrito = new javax.swing.JButton();
         botonHistorial = new javax.swing.JButton();
+        botonCerrarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 800));
@@ -39,19 +40,32 @@ public class Ventana extends javax.swing.JFrame {
         });
 
         botonHistorial.setText("Ver Historial");
+        botonHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonHistorialActionPerformed(evt);
+            }
+        });
+
+        botonCerrarSesion.setText("Cerrar Sesión");
+        botonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCerrarSesionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(163, Short.MAX_VALUE)
+                .addContainerGap(139, Short.MAX_VALUE)
                 .addComponent(botonListado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonCarrito)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonHistorial)
-                .addGap(156, 156, 156))
+                .addGap(83, 83, 83)
+                .addComponent(botonCerrarSesion))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -59,7 +73,8 @@ public class Ventana extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonListado)
                     .addComponent(botonCarrito)
-                    .addComponent(botonHistorial))
+                    .addComponent(botonHistorial)
+                    .addComponent(botonCerrarSesion))
                 .addContainerGap(618, Short.MAX_VALUE))
         );
 
@@ -70,16 +85,27 @@ public class Ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonCarritoActionPerformed
 
+    private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
+        Controlador.ventana.cambiarVista((JPanel) (new IniciarSesion()));
+        Controlador.ventana.menuInvisible();
+    }//GEN-LAST:event_botonCerrarSesionActionPerformed
+
+    private void botonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHistorialActionPerformed
+        Controlador.ventana.cambiarVista(new Historial());
+    }//GEN-LAST:event_botonHistorialActionPerformed
+
     public void menuVisible() {
         botonListado.setVisible(true);
         botonHistorial.setVisible(true);
         botonCarrito.setVisible(true);
+        botonCerrarSesion.setVisible(true);
     }
 
     public void menuInvisible() {
         botonListado.setVisible(false);
         botonHistorial.setVisible(false);
         botonCarrito.setVisible(false);
+        botonCerrarSesion.setVisible(false);
     }
 
     public void cambiarVista(JComponent panel) {
@@ -141,6 +167,7 @@ public class Ventana extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCarrito;
+    private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonHistorial;
     private javax.swing.JButton botonListado;
     // End of variables declaration//GEN-END:variables
