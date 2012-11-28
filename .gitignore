@@ -1,9 +1,10 @@
 *.class
-
+.gitignore
 # Package Files #
 *.jar
 *.war
 *.ear
+Config.java
 /build/
 /dist/
 /build/build-jar.properties
