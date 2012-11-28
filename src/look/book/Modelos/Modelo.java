@@ -40,8 +40,8 @@ public class Modelo<T> {
     }
 
     public static <T extends Modelo> LinkedList<T> buscarTodos(Class<T> c, String[] condiciones, String opciones) {
-        try {
-            LinkedList<T> modelos = new LinkedList<T>();
+        LinkedList<T> modelos = new LinkedList<T>();
+        try {   
 
             T modelo = c.newInstance();
             String query = "select * from " + modelo.tabla + " where 1";
@@ -74,10 +74,6 @@ public class Modelo<T> {
                 modelos.add(modelo);
             }
 
-            if (modelos.size() > 0) {
-                return modelos;
-            }
-
         } catch (InstantiationException ex) {
             System.out.println("InstantiationException ERROR: " + ex.getMessage());
         } catch (IllegalAccessException ex) {
@@ -86,7 +82,7 @@ public class Modelo<T> {
             System.out.println("SQLException ERROR: " + ex.getMessage());
         }
 
-        return null;
+        return modelos;
     }
 
     public static <T extends Modelo> T buscar(Class<T> c, int id) {

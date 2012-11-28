@@ -16,12 +16,12 @@ public class ListadoLibros extends javax.swing.JPanel {
 
         ctrl = new AgregarLibroCarro();
         LinkedList<Libro> libros = Modelo.buscarTodos(Libro.class);
-        
+
         BoxLayout layout = new BoxLayout(jPanel1, BoxLayout.PAGE_AXIS);
         jPanel1.setLayout(layout);
-        for(Libro libro : libros){
+        for (Libro libro : libros) {
             LibroLista panel = new LibroLista(libro, ctrl);
-           jPanel1.add(panel);
+            jPanel1.add(panel);
         }
     }
 
@@ -70,10 +70,8 @@ public class ListadoLibros extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-
 }
