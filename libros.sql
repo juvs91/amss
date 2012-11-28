@@ -1,23 +1,16 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 3.3.9.2
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-11-2012 a las 01:39:35
--- Versión del servidor: 5.5.16
--- Versión de PHP: 5.3.8
+-- Tiempo de generación: 28-11-2012 a las 01:46:27
+-- Versión del servidor: 5.5.9
+-- Versión de PHP: 5.2.17
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `libros`
+-- Base de datos: `Carrito`
 --
 
 -- --------------------------------------------------------
@@ -26,11 +19,22 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `compralibro`
 --
 
-CREATE TABLE IF NOT EXISTS `compralibro` (
+CREATE TABLE `compralibro` (
   `compraId` int(11) DEFAULT NULL,
   `libroId` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcar la base de datos para la tabla `compralibro`
+--
+
+INSERT INTO `compralibro` VALUES(1, 1, 2);
+INSERT INTO `compralibro` VALUES(1, 3, 4);
+INSERT INTO `compralibro` VALUES(2, 2, 4);
+INSERT INTO `compralibro` VALUES(3, 1, 3);
+INSERT INTO `compralibro` VALUES(4, 4, 1);
+INSERT INTO `compralibro` VALUES(6, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -38,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `compralibro` (
 -- Estructura de tabla para la tabla `compras`
 --
 
-CREATE TABLE IF NOT EXISTS `compras` (
+CREATE TABLE `compras` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` datetime NOT NULL,
   `metodo_envio` int(11) NOT NULL,
@@ -47,7 +51,18 @@ CREATE TABLE IF NOT EXISTS `compras` (
   `envio_total` float NOT NULL,
   `usuarioId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Volcar la base de datos para la tabla `compras`
+--
+
+INSERT INTO `compras` VALUES(1, '2012-11-14 00:44:44', 1, 200, 2, 220, 2);
+INSERT INTO `compras` VALUES(2, '2012-11-20 00:45:53', 0, 180, 1.6, 200, 1);
+INSERT INTO `compras` VALUES(3, '2012-11-16 00:46:43', 0, 140, 2.1, 180, 1);
+INSERT INTO `compras` VALUES(4, '2012-11-23 00:47:32', 1, 250, 1.8, 270, 3);
+INSERT INTO `compras` VALUES(5, '2012-11-23 00:51:03', 1, 300, 3, 330, 5);
+INSERT INTO `compras` VALUES(6, '2012-11-16 01:36:20', 1, 200, 2.1, 221, 1);
 
 -- --------------------------------------------------------
 
@@ -55,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `compras` (
 -- Estructura de tabla para la tabla `libros`
 --
 
-CREATE TABLE IF NOT EXISTS `libros` (
+CREATE TABLE `libros` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(255) NOT NULL,
   `autor` varchar(255) NOT NULL,
@@ -63,7 +78,19 @@ CREATE TABLE IF NOT EXISTS `libros` (
   `peso` float NOT NULL,
   `cantDisponible` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Volcar la base de datos para la tabla `libros`
+--
+
+INSERT INTO `libros` VALUES(1, 'The hunger Games', 'Suzanne Collins', 350, 1.2, 100);
+INSERT INTO `libros` VALUES(2, 'Babel 17', 'Samuel R. Delany', 200, 1, 55);
+INSERT INTO `libros` VALUES(3, 'Fahrenheit 451', 'Ray Bradbury', 110, 0.4, 10);
+INSERT INTO `libros` VALUES(4, 'Fantasmas y pastillas', 'Juan Vasen', 200, 1.1, 40);
+INSERT INTO `libros` VALUES(5, 'Fiebre', 'Robin Cook', 80, 0.4, 38);
+INSERT INTO `libros` VALUES(6, 'Héroes', 'Ray Loriga', 220, 0.8, 130);
+INSERT INTO `libros` VALUES(7, 'Heidi', 'Juana Spyri', 180, 0.6, 20);
 
 -- --------------------------------------------------------
 
@@ -71,20 +98,16 @@ CREATE TABLE IF NOT EXISTS `libros` (
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE IF NOT EXISTS `usuarios` (
+CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreUsuario` varchar(50) NOT NULL,
-  `contrasena` varchar(50) NOT NULL,
+  `nombreUsuario` varchar(25) NOT NULL,
+  `contrasena` varchar(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Volcar la base de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombreUsuario`, `contrasena`) VALUES
-(1, 'ricardo', '123456');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+INSERT INTO `usuarios` VALUES(1, 'ricardo', '1234');
+INSERT INTO `usuarios` VALUES(2, 'A00809536', 'pass1234');

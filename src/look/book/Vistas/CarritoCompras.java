@@ -7,10 +7,14 @@ package look.book.Vistas;
 import java.awt.Container;
 import java.util.LinkedList;
 import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 import javax.swing.ScrollPaneLayout;
 import look.book.Controladores.CarroDeComprasControlador;
+import look.book.Controladores.Controlador;
+import look.book.Controladores.ProcesarOrdenControlador;
 import look.book.Modelos.CarroDeCompras;
 import look.book.Modelos.Libro;
 import look.book.Modelos.Modelo;
@@ -22,10 +26,16 @@ import look.book.Modelos.Modelo;
 public class CarritoCompras extends javax.swing.JPanel {
 
     private CarroDeComprasControlador controlador;
+    private ProcesarOrdenControlador procesarControlador;
 
     public CarritoCompras() {
         initComponents();
+
+        radio.add(aereo);
+        radio.add(terrestre);
+
         controlador = new CarroDeComprasControlador();
+        procesarControlador = new ProcesarOrdenControlador();
 
         CarroDeCompras carro = controlador.getCarroDeCompras();
 
@@ -47,8 +57,6 @@ public class CarritoCompras extends javax.swing.JPanel {
 
         costoTotal.setText(String.format("$%.2f", precioT));
         pesoTotal.setText(String.format("%.02f kg", pesoT));
-
-
     }
 
     /**
@@ -60,18 +68,19 @@ public class CarritoCompras extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        radio = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        terrestre = new javax.swing.JRadioButton();
+        aereo = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         costoEnvio = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         pesoTotal = new javax.swing.JLabel();
         costoTotal = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        procesarOrden = new javax.swing.JButton();
         contenido = new javax.swing.JScrollPane();
         panel2 = new javax.swing.JPanel();
 
@@ -86,12 +95,12 @@ public class CarritoCompras extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Metodo de envio: ");
 
-        jRadioButton1.setText("Terrestre");
+        terrestre.setText("Terrestre");
 
-        jRadioButton2.setText("Aereo");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        aereo.setText("Aereo");
+        aereo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                aereoActionPerformed(evt);
             }
         });
 
@@ -110,7 +119,12 @@ public class CarritoCompras extends javax.swing.JPanel {
 
         costoTotal.setText("$0.00");
 
-        jButton1.setText("Procesar orden");
+        procesarOrden.setText("Procesar orden");
+        procesarOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                procesarOrdenActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,9 +137,9 @@ public class CarritoCompras extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(terrestre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton2))
+                        .addComponent(aereo))
                     .addComponent(costoEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,7 +152,7 @@ public class CarritoCompras extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(pesoTotal)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(procesarOrden)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -146,8 +160,8 @@ public class CarritoCompras extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
+                    .addComponent(terrestre)
+                    .addComponent(aereo)
                     .addComponent(jLabel6)
                     .addComponent(pesoTotal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -158,7 +172,7 @@ public class CarritoCompras extends javax.swing.JPanel {
                     .addComponent(costoTotal)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(procesarOrden)
                 .addContainerGap())
         );
 
@@ -210,23 +224,33 @@ public class CarritoCompras extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    private void aereoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aereoActionPerformed
+    }//GEN-LAST:event_aereoActionPerformed
+
+    private void procesarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesarOrdenActionPerformed
+        int ax = JOptionPane.showConfirmDialog(null, "¿Estas seguro de querer procesar la orden?");
+        if (ax == JOptionPane.YES_OPTION) {
+            procesarControlador.procesarOrden();
+            JOptionPane.showMessageDialog(Controlador.ventana, "La orden ha sido procesada.", "Orden procesada", JOptionPane.DEFAULT_OPTION);
+            Controlador.ventana.cambiarVista(new CarritoCompras());
+        }
+
+    }//GEN-LAST:event_procesarOrdenActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton aereo;
     private javax.swing.JScrollPane contenido;
     private javax.swing.JLabel costoEnvio;
     private javax.swing.JLabel costoTotal;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JPanel panel2;
     private javax.swing.JLabel pesoTotal;
+    private javax.swing.JButton procesarOrden;
+    private javax.swing.ButtonGroup radio;
+    private javax.swing.JRadioButton terrestre;
     // End of variables declaration//GEN-END:variables
 }
