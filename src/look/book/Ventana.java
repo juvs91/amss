@@ -3,6 +3,8 @@ package look.book;
 import look.book.Controladores.Controlador;
 import look.book.Vistas.IniciarSesion;
 import javax.swing.*;
+import look.book.Vistas.Historial;
+import look.book.Vistas.ListadoLibros;
 
 public class Ventana extends javax.swing.JFrame {
 
@@ -103,7 +105,7 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonHistorialActionPerformed
 
     private void botonListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListadoActionPerformed
-        
+        Controlador.ventana.cambiarVista(new ListadoLibros());
     }//GEN-LAST:event_botonListadoActionPerformed
 
     public void menuVisible() {
