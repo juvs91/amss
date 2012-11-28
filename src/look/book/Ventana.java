@@ -86,12 +86,15 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCarritoActionPerformed
 
     private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
-        Controlador.ventana.cambiarVista((JPanel) (new IniciarSesion()));
-        Controlador.ventana.menuInvisible();
+        int ax = JOptionPane.showConfirmDialog(null, "¿Estas seguro de querer cerrar sesión?\n    Tu carro de compras se perdera.");
+        if (ax == JOptionPane.YES_OPTION) {
+            Controlador.ventana.cambiarVista((JPanel) (new IniciarSesion()));
+            Controlador.ventana.menuInvisible();
+        }
     }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
     private void botonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHistorialActionPerformed
-        Controlador.ventana.cambiarVista(new Historial());
+        //Controlador.ventana.cambiarVista(new Historial());
     }//GEN-LAST:event_botonHistorialActionPerformed
 
     public void menuVisible() {

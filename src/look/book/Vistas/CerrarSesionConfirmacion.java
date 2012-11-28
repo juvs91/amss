@@ -35,6 +35,11 @@ public class CerrarSesionConfirmacion extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         Aceptar.setText("Aceptar");
+        Aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AceptarActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
 
@@ -78,6 +83,10 @@ public class CerrarSesionConfirmacion extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
+        
+    }//GEN-LAST:event_AceptarActionPerformed
 
     /**
      * @param args the command line arguments
