@@ -99,7 +99,7 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
     private void botonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHistorialActionPerformed
-        //Controlador.ventana.cambiarVista(new Historial());
+        Controlador.ventana.cambiarVista(new Historial());
     }//GEN-LAST:event_botonHistorialActionPerformed
 
     private void botonListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListadoActionPerformed
