@@ -21,23 +21,66 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        botonListado = new javax.swing.JButton();
+        botonCarrito = new javax.swing.JButton();
+        botonHistorial = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 800));
         setMinimumSize(new java.awt.Dimension(800, 800));
+
+        botonListado.setText("Ver Listado de Libros");
+
+        botonCarrito.setText("Ver Carrito de Compras");
+        botonCarrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCarritoActionPerformed(evt);
+            }
+        });
+
+        botonHistorial.setText("Ver Historial");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 696, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(163, Short.MAX_VALUE)
+                .addComponent(botonListado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonCarrito)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonHistorial)
+                .addGap(156, 156, 156))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 641, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonListado)
+                    .addComponent(botonCarrito)
+                    .addComponent(botonHistorial))
+                .addContainerGap(618, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCarritoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonCarritoActionPerformed
+
+    public void menuVisible() {
+        botonListado.setVisible(true);
+        botonHistorial.setVisible(true);
+        botonCarrito.setVisible(true);
+    }
+
+    public void menuInvisible() {
+        botonListado.setVisible(false);
+        botonHistorial.setVisible(false);
+        botonCarrito.setVisible(false);
+    }
 
     public void cambiarVista(JComponent panel) {
         if (componenteActual != null) {
@@ -92,9 +135,13 @@ public class Ventana extends javax.swing.JFrame {
             public void run() {
                 Controlador.ventana.cambiarVista((JPanel) (new IniciarSesion()));
                 Controlador.ventana.setVisible(true);
+                Controlador.ventana.menuInvisible();
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonCarrito;
+    private javax.swing.JButton botonHistorial;
+    private javax.swing.JButton botonListado;
     // End of variables declaration//GEN-END:variables
 }
