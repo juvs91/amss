@@ -40,7 +40,6 @@ public class Historial extends javax.swing.JPanel {
         cl = null;
         mostrarLista();
         listaFactura.addListSelectionListener(new ListSelectionListener() {
-
             @Override
             public void valueChanged(ListSelectionEvent lse) {
                 if (lse.getValueIsAdjusting()) {
@@ -122,19 +121,20 @@ public class Historial extends javax.swing.JPanel {
     }
 
     public void mostrarCompra(ListSelectionEvent lse) {
-        Compra com = c.get(lse.getFirstIndex());
-        if(com.getMetodo_envio()==1){
-            envio="Aereo";
-        }else{
-            envio="Terrestre";
+        int x = lse.getFirstIndex();
+        Compra com = c.get(x);
+        if (com.getMetodo_envio() == 1) {
+            envio = "Aereo";
+        } else {
+            envio = "Terrestre";
         }
-        text="";
-        text = text+"El costo total es: " +"$"+com.getCosto_total() +"\n"+"La factura " + com.getId()+"\nEl peso total:"+"$"+com.getPeso_total()+"\nEl total de envio:"+"$"+com.getEnvio_total()+"\nEl metodo de envio:"+envio;
-        text+="\n=========================================";
+        text = "";
+        text = text + "El costo total es: " + "$" + com.getCosto_total() + "\n" + "La factura " + com.getId() + "\nEl peso total:" + "$" + com.getPeso_total() + "\nEl total de envio:" + "$" + com.getEnvio_total() + "\nEl metodo de envio:" + envio;
+        text += "\n=========================================";
         for (CompraLibro compLi : com.getComprasLibro()) {
-            text += "\n"+"La cantidad: " + compLi.getCantidad() +"\n"+ "Titulo:" + compLi.getLibro().getTitulo()+"\n"+"El id del Libro:"+compLi.getCompraId()+"\nEl precio del libro"+"$"+compLi.getLibro().getPrecio();
-            text+="\n=========================================";
+            text += "\n" + "La cantidad: " + compLi.getCantidad() + "\n" + "Titulo:" + compLi.getLibro().getTitulo() + "\n" + "El id del Libro:" + compLi.getCompraId() + "\nEl precio del libro" + "$" + compLi.getLibro().getPrecio();
+            text += "\n=========================================";
         }
-         textArea.setText(text);
+        textArea.setText(text);
     }
 }

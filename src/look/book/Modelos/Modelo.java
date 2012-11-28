@@ -9,7 +9,7 @@ import java.util.List;
 public class Modelo<T> {
 
     private static Connection conexion;
-    private static Statement stm;
+    protected static Statement stm;
 
     
     protected String tabla;
@@ -95,7 +95,4 @@ public class Modelo<T> {
         return null;
     }
 
-    public final boolean guardar() {
-        return false;
-    }
 }

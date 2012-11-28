@@ -10,6 +10,13 @@ public class CompraLibro extends Modelo {
     public CompraLibro() {
         tabla = "compralibro";
     }
+    
+    public CompraLibro(int compraId, int libroId, int cantidad){
+        this.compraId = compraId;
+        this.libroId = libroId;
+        this.cantidad = cantidad;
+        tabla = "compralibro";
+    }
 
     public Libro getLibro() {
         Libro l = Modelo.buscar(Libro.class, libroId);

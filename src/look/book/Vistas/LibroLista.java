@@ -105,7 +105,7 @@ public class LibroLista extends javax.swing.JPanel {
         if (!agrego) {
             JOptionPane.showMessageDialog(Controlador.ventana, "Lo sentimos por el momento no existen suficientes libros en almacen.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(Controlador.ventana, "El libro ha sido agregado a su carro de compras.", "Lirbo agregado", JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showMessageDialog(Controlador.ventana, "El libro ha sido agregado a su carro de compras.", "Libro agregado", JOptionPane.DEFAULT_OPTION);
         }
     }//GEN-LAST:event_agregarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,8 +1,12 @@
 package look.book.Modelos;
 
-import java.sql.Date;
+import java.lang.reflect.Field;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.LinkedList;
+import java.util.Date;
 
 public class Compra extends Modelo {
 
@@ -19,12 +23,67 @@ public class Compra extends Modelo {
         tabla = "compras";
     }
 
+    public Compra(CarroDeCompras carro, int usuarioId, int metodo_envio) {
+        tabla = "compras";
+        this.usuarioId = usuarioId;
+
+        LinkedList<Libro> libros = carro.getLibros();
+        LinkedList<Integer> cant = carro.getCantidadPorLibro();
+        compraLibro = new LinkedList<CompraLibro>();
+
+        for (int i = 0; i < libros.size(); i++) {
+            costo_total += libros.get(i).getPrecio() * cant.get(i);
+            peso_total += libros.get(i).getPeso() * cant.get(i);
+            compraLibro.add(new CompraLibro(0, libros.get(i).getId(), cant.get(i)));
+        }
+
+        if (metodo_envio == 0) { // terrestre
+            envio_total = 2 * peso_total;
+        } else {
+            envio_total = 4 * peso_total;
+        }
+
+        Date d = new Date();
+        fecha = new Timestamp(d.getTime());
+
+
+    }
+
+    public void guardar() {
+        try {
+            String query = "INSERT INTO  compras (`id` ,`fecha` ,`metodo_envio` ,`costo_total` ,"
+                    + "`peso_total` ,`envio_total` ,`usuarioId`)VALUES (NULL ,  '" + fecha + "',  '" + metodo_envio + "',"
+                    + "  '" + costo_total + "',  '" + peso_total + "',  '" + envio_total + "',  '" + usuarioId + "');";
+
+            stm.executeUpdate(query);
+
+            String f = fecha.toString();
+            f = f.substring(0, f.indexOf("."));
+            String condiciones[] = {"metodo_envio = " + metodo_envio,
+                "fecha = '" + f + "'",
+                "usuarioId = " + usuarioId};
+            
+            LinkedList<Compra> compras = Modelo.buscarTodos(Compra.class, condiciones);
+            id = compras.get(0).getId();
+
+            for (CompraLibro cl : compraLibro) {
+                query = "INSERT INTO compralibro (`compraId`, `libroId`, `cantidad`) "
+                        + "VALUES ('" + id + "', '" + cl.getLibroId() + "', '" + cl.getCantidad() + "');";
+
+                stm.executeUpdate(query);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("SQLException ERROR: " + ex.getMessage());
+        }
+    }
+
     public static LinkedList<Compra> getComprasPorUsuarioId(int id) {
         String condicion[] = {" usuarioId = " + id + " "};
         LinkedList<Compra> lista = Modelo.buscarTodos(Compra.class, condicion);
 
         for (Compra c : lista) {
-            condicion[0] = " compraId = " + id + " ";
+            condicion[0] = " compraId = " + c.getId() + " ";
             c.compraLibro = Modelo.buscarTodos(CompraLibro.class, condicion);
         }
         return lista;
@@ -32,7 +91,7 @@ public class Compra extends Modelo {
 
     public LinkedList<CompraLibro> getComprasLibro() {
         return compraLibro;
-    }   
+    }
 
     public int getUsuarioId() {
         return usuarioId;
