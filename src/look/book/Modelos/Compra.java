@@ -24,7 +24,7 @@ public class Compra extends Modelo {
         LinkedList<Compra> lista = Modelo.buscarTodos(Compra.class, condicion);
 
         for (Compra c : lista) {
-            condicion[0] = " compraId = " + id + " ";
+            condicion[0] = " compraId = " + c.getId() + " ";
             c.compraLibro = Modelo.buscarTodos(CompraLibro.class, condicion);
         }
         return lista;
