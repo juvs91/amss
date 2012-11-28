@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.class
 
 # Package Files #
@@ -6,3 +7,12 @@
 *.ear
 Config.java
 /dist/
+=======
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+/build/
+>>>>>>> 324533f028f1bc9e5af79abcffd7aadf9e69b13c

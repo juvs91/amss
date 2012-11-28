@@ -1,5 +1,7 @@
 package look.book.Modelos;
 
+import java.util.LinkedList;
+
 public class Usuario extends Modelo {
 
     private int id;
@@ -10,6 +12,10 @@ public class Usuario extends Modelo {
     public Usuario() {
         carroDeCompras = new CarroDeCompras();
         tabla = "usuarios";
+    }
+    
+    public LinkedList<Compra> getCompras(){
+        return Compra.getComprasPorUsuarioId(id);
     }
 
     public Usuario(String nombreUsuario, String contrasena) {
