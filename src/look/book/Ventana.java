@@ -31,6 +31,11 @@ public class Ventana extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(800, 800));
 
         botonListado.setText("Ver Listado de Libros");
+        botonListado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonListadoActionPerformed(evt);
+            }
+        });
 
         botonCarrito.setText("Ver Carrito de Compras");
         botonCarrito.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +101,10 @@ public class Ventana extends javax.swing.JFrame {
     private void botonHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHistorialActionPerformed
         //Controlador.ventana.cambiarVista(new Historial());
     }//GEN-LAST:event_botonHistorialActionPerformed
+
+    private void botonListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListadoActionPerformed
+        
+    }//GEN-LAST:event_botonListadoActionPerformed
 
     public void menuVisible() {
         botonListado.setVisible(true);
