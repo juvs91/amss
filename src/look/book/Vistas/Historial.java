@@ -132,7 +132,7 @@ public class Historial extends javax.swing.JPanel {
         text = text+"El costo total es: " +"$"+com.getCosto_total() +"\n"+"La factura " + com.getId()+"\nEl peso total:"+"$"+com.getPeso_total()+"\nEl total de envio:"+"$"+com.getEnvio_total()+"\nEl metodo de envio:"+envio;
         text+="\n=========================================";
         for (CompraLibro compLi : com.getComprasLibro()) {
-            text += "\n"+"La cantidad: " + compLi.getCantidad() +"\n"+ "Titulo:" + compLi.getLibro().getTitulo()+"\n"+"El id del Libro:"+compLi.getCompraId()+"\nEl precio del libro";
+            text += "\n"+"La cantidad: " + compLi.getCantidad() +"\n"+ "Titulo:" + compLi.getLibro().getTitulo()+"\n"+"El id del Libro:"+compLi.getCompraId()+"\nEl precio del libro"+"$"+compLi.getLibro().getPrecio();
             text+="\n=========================================";
         }
          textArea.setText(text);
